@@ -1,0 +1,31 @@
+extends layout
+  
+block content
+ h1 Seja bem vindo #{user.name}!!!
+ p Aqui você pode criar suas primeiras atividades!!!
+ h2.page-header Atividade
+ if errors
+  each error, i in errors
+   div.alert.alert-danger #{error.msg}
+ form(method='post', action='/index/register',enctype='multipart/form-data')
+  .form-group
+   label Descrição
+   input.form-control(name='descricao', type='text', placeholder='Descrição da atividade')
+  .form-group
+   label Responsável
+   select.form-control.form-control-sm(name='responsavel')
+     option.Small Escolha o responsável
+     option #{user.name}
+  .form-group
+   label Status
+   select.form-control.form-control-sm(name='status')
+     option.Small Escolha o status
+     option Done
+     option WIP
+     option Review
+     option To Do
+  //-  input.form-control(name='status', type='text', placeholder='Digite o úsuário')
+  .form-group
+   label DeadLine
+   input.form-control(name='deadline', type='date', placeholder='Digite a senha')
+  input.btn.btn-primary(type='submit', name='submit',value='Salvar Atividade')
